@@ -37,6 +37,38 @@ function reverseWithReducer(str) {
         .reduce((reversed, character) => character + reversed, '');
 }
 
+function palindrome(str) {
+  let low = 0;
+  let high = str.length - 1;
+
+  while (low < high) {
+    if (str[low] != str[high]) {
+      return false;
+    }
+
+    low = low + 1;
+    high = high -1;
+  }
+
+  return true;
+}
+
+function palindromeWithEvery(str) {
+  return str.split('')
+        .every((char, i) => char === str[str.length - 1 - i]);
+}
+
+function reverseInt(n) {
+  const revStr = n.toString()
+                  .replace('-','')
+                  .split('')
+                  .reverse()
+                  .join('');
+
+  const reversed = parseInt(revStr);
+  return Math.sign(n) * reversed;
+}
+
 test = (result, expectedResult) => {
   if (result === expectedResult) {
     console.log('Pass');
@@ -49,3 +81,7 @@ test(fibonacciRecursive(4), 3);
 test(fibonacciRecursive(6), 8);
 test(fizzBuzz(15), 'FizzBuzzFizzFizzBuzzFizzFizzBuzz');
 test(reverseString('abcd'), 'dcba');
+test(palindrome('abxl22lxba'), true);
+test(palindrome('asD'), false);
+test(reverseInt(15), 51);
+test(reverseInt(-500), -5);
