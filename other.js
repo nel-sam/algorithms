@@ -22,6 +22,21 @@ fizzBuzz = (n) => {
   return result;
 }
 
+reverseString = (str) => {
+  let reversed = '';
+
+  for (let character of str) {
+    reversed = character + reversed;
+  }
+
+  return reversed;
+}
+
+function reverseWithReducer(str) {
+  return str.split('')
+        .reduce((reversed, character) => character + reversed, '');
+}
+
 test = (result, expectedResult) => {
   if (result === expectedResult) {
     console.log('Pass');
@@ -33,3 +48,4 @@ test = (result, expectedResult) => {
 test(fibonacciRecursive(4), 3);
 test(fibonacciRecursive(6), 8);
 test(fizzBuzz(15), 'FizzBuzzFizzFizzBuzzFizzFizzBuzz');
+test(reverseString('abcd'), 'dcba');
