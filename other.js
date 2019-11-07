@@ -46,8 +46,8 @@ function palindrome(str) {
       return false;
     }
 
-    low = low + 1;
-    high = high -1;
+    low++;
+    high--;
   }
 
   return true;
@@ -69,6 +69,23 @@ function reverseInt(n) {
   return Math.sign(n) * reversed;
 }
 
+function maxChar(str) {
+  let charHash = {};
+  let maxChar = '';
+  let maxCount = 0;
+
+  for (let character of str) {
+    charHash[character] = charHash[character] + 1 || 1;
+
+    if (charHash[character] > maxCount) {
+     maxCount = charHash[character];
+     maxChar = character;
+    }
+  }
+
+  return maxChar;
+}
+
 test = (result, expectedResult) => {
   if (result === expectedResult) {
     console.log('Pass');
@@ -85,3 +102,4 @@ test(palindrome('abxl22lxba'), true);
 test(palindrome('asD'), false);
 test(reverseInt(15), 51);
 test(reverseInt(-500), -5);
+test(maxChar('abcccccccd'), 'c');
