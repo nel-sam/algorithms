@@ -1,4 +1,16 @@
-binarySearch = (array, toFind) => {
+// O(n)
+const selectionSearch = (array, toFind) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === toFind) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+// O(log n)
+const binarySearch = (array, toFind) => {
   let low = 0;
   let high = array.length - 1;
 
@@ -23,14 +35,7 @@ binarySearch = (array, toFind) => {
   }
 }
 
-test = (result, expectedResult) => {
-  if (result === expectedResult) {
-    console.log('Pass');
-  } else {
-    console.log('Fail');
-  }
-}
-
-console.log('Starting');
+const test = require('./test');
+test(selectionSearch([1,3,5,7,8,9], 5), 2);
 test(binarySearch([1,3,5,7,8,9], 7), 3);
 test(binarySearch([1,3,5,7,8,9], 13), -1);

@@ -1,4 +1,4 @@
-fibonacciRecursive = (n) => {
+const fibonacciRecursive = (n) => {
   if (n < 2) {
     return n;
   }
@@ -6,7 +6,7 @@ fibonacciRecursive = (n) => {
   return fibonacciRecursive(n -1) + fibonacciRecursive (n - 2);
 }
 
-fizzBuzz = (n) => {
+const fizzBuzz = (n) => {
   let result = '';
 
   for (i = 1; i <= n; i++) {
@@ -22,7 +22,7 @@ fizzBuzz = (n) => {
   return result;
 }
 
-fizzBuzz2 = (n) => {
+const fizzBuzz2 = (n) => {
   for (i = 1; i <= n; i++) {
     if (i % 3 === 0 && i % 5 === 0) {
       console.log('FizzBuzz');
@@ -36,7 +36,7 @@ fizzBuzz2 = (n) => {
   }
 }
 
-reverseString = (str) => {
+const reverseString = (str) => {
   let reversed = '';
 
   for (let character of str) {
@@ -46,12 +46,12 @@ reverseString = (str) => {
   return reversed;
 }
 
-function reverseWithReducer(str) {
+const reverseWithReducer = (str) => {
   return str.split('')
         .reduce((reversed, character) => character + reversed, '');
 }
 
-function palindrome(str) {
+const palindrome = (str) => {
   let low = 0;
   let high = str.length - 1;
 
@@ -67,12 +67,12 @@ function palindrome(str) {
   return true;
 }
 
-function palindromeWithEvery(str) {
+const palindromeWithEvery = (str) => {
   return str.split('')
         .every((char, i) => char === str[str.length - 1 - i]);
 }
 
-function reverseInt(n) {
+const reverseInt = (n) => {
   const revStr = n.toString()
                   .replace('-','')
                   .split('')
@@ -83,7 +83,7 @@ function reverseInt(n) {
   return Math.sign(n) * reversed;
 }
 
-function maxChar(str) {
+const maxChar = (str) => {
   let charHash = {};
   let maxChar = '';
   let maxCount = 0;
@@ -100,7 +100,7 @@ function maxChar(str) {
   return maxChar;
 }
 
-function chunk(array, size) {
+const chunk = (array, size) => {
   const chunked = [];
 
   for (let element of array) {
@@ -118,7 +118,7 @@ function chunk(array, size) {
   return chunked;
 }
 
-function chunkWithSlice(array, size) {
+const chunkWithSlice = (array, size) => {
   const chunked = [];
   let index = 0;
 
@@ -131,14 +131,7 @@ function chunkWithSlice(array, size) {
   return chunked;
 }
 
-test = (result, expectedResult) => {
-  if (result === expectedResult) {
-    console.log('Pass');
-  } else {
-    console.log('Fail');
-  }
-}
-
+const test = require('./test');
 test(fibonacciRecursive(4), 3);
 test(fibonacciRecursive(6), 8);
 test(fizzBuzz(15), 'FizzBuzzFizzFizzBuzzFizzFizzBuzz');
