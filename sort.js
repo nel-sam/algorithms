@@ -69,7 +69,22 @@ const quickSort = (array) => {
 // Split the array in to, sort the halves, merge into one array
 // O(n log n)
 const mergeSort = (array) => {
+  // Base case
+  if (array.length <= 1) {
+    return array;
+  } else if (array.length === 2) {
+    if (array[1] < array[0]) {
+      swap(array, 1, 0);
+    }
 
+    return array;
+  } else {
+    // Recursive case
+    const midPoint = Math.floor((array.length - 1) / 2);
+    const leftHalf = array.slice(0, midPoint);
+    const rightHalf = array.slice(midPoint, array.length);
+    return mergeSort(leftHalf).concat(mergeSort(rightHalf));
+  }
 }
 
 const test = require('./test');
@@ -83,3 +98,6 @@ test(selectionSort(toSort2).join(''), sorted2.join(''));
 
 test(quickSort(toSort).join(''), sorted.join(''));
 test(quickSort(toSort2).join(''), sorted2.join(''));
+
+test(mergeSort(toSort).join(''), sorted.join(''));
+test(mergeSort(toSort2).join(''), sorted2.join(''));

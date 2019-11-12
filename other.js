@@ -131,6 +131,32 @@ const chunkWithSlice = (array, size) => {
   return chunked;
 }
 
+const anagrams = (stringA, stringB) => {
+  const pattern = /[^\w]/gi;
+  stringA = stringA.replace(pattern, '').toLowerCase();
+  stringB = stringB.replace(pattern, '').toLowerCase();
+
+  if (stringA.length !== stringB.length) {
+    return false;
+  }
+
+  for(const character of stringA) {
+    if(stringA.split(character).length !== stringB.split(character).length) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+const anagramsWithSorting = (stringA, stringB) => {
+  const pattern = /[^\w]/gi;
+  stringA = stringA.replace(pattern, '').toLowerCase().split('').sort().join('');
+  stringB = stringB.replace(pattern, '').toLowerCase().split('').sort().join('');
+
+  return stringA === stringB;
+}
+
 const test = require('./test');
 test(fibonacciRecursive(4), 3);
 test(fibonacciRecursive(6), 8);
@@ -143,3 +169,5 @@ test(reverseInt(-500), -5);
 test(maxChar('abcccccccd'), 'c');
 test(chunk([1, 2, 3, 4, 5], 10).join(''), [ [ 1, 2, 3, 4, 5 ] ].join(''));
 test(chunk([1, 2, 3, 4, 5], 4).join(''), [[ 1, 2, 3, 4], [5]].join(''));
+test(anagrams('tEst!@#@', 'tEst)(*'), true)
+test(anagrams('RAIL! SAFETY!', 'fairy tales'), true)
