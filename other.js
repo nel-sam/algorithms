@@ -157,6 +157,29 @@ const anagramsWithSorting = (stringA, stringB) => {
   return stringA === stringB;
 }
 
+const capitalize = (str) => {
+  let words = [];
+
+  for (const word of str.split(' ')) {
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+
+  return words.join(' ');
+}
+
+const vowels = (str) => {
+  const pattern = /[aeiou]/;
+  let count = 0;
+
+  for (const letter of str) {
+    if (pattern.test(letter.toLowerCase())) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
 const test = require('./test');
 test(fibonacciRecursive(4), 3);
 test(fibonacciRecursive(6), 8);
@@ -169,5 +192,7 @@ test(reverseInt(-500), -5);
 test(maxChar('abcccccccd'), 'c');
 test(chunk([1, 2, 3, 4, 5], 10).join(''), [ [ 1, 2, 3, 4, 5 ] ].join(''));
 test(chunk([1, 2, 3, 4, 5], 4).join(''), [[ 1, 2, 3, 4], [5]].join(''));
-test(anagrams('tEst!@#@', 'tEst)(*'), true)
-test(anagrams('RAIL! SAFETY!', 'fairy tales'), true)
+test(anagrams('tEst!@#@', 'tEst)(*'), true);
+test(anagrams('RAIL! SAFETY!', 'fairy tales'), true);
+test(capitalize('look, it is working!'), 'Look, It Is Working!');
+test(vowels('Why do you ask?'), 4);

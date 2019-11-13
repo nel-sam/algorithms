@@ -35,6 +35,12 @@ const binarySearch = (array, toFind) => {
   }
 }
 
+// TODO
+breadthFirstSearch() {
+
+}
+
+
 const test = require('./test');
 test(selectionSearch([1,3,5,7,8,9], 5), 2);
 test(binarySearch([1,3,5,7,8,9], 7), 3);
