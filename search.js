@@ -35,13 +35,54 @@ const binarySearch = (array, toFind) => {
   }
 }
 
+class leaf {
+  constructor(label, right, left) {
+    this.label = label;
+    this.right = right;
+    this.left = left;
+  }
+}
+
 // TODO
-breadthFirstSearch() {
+const breadthFirstSearch = (tree, toFind) => {
 
 }
+
 
 
 const test = require('./test');
 test(selectionSearch([1,3,5,7,8,9], 5), 2);
 test(binarySearch([1,3,5,7,8,9], 7), 3);
 test(binarySearch([1,3,5,7,8,9], 13), -1);
+
+// const tree = new leaf(
+//   'Start',
+//   new leaf(
+//     'A',
+//     new leaf(
+//       'A1',
+//       null,
+//       null
+//     ),
+//     new leaf(
+//       'A2',
+//       null,
+//       null
+//     )
+//   ),
+//   new leaf(
+//     'B',
+//     new leaf(
+//       'B1',
+//       null,
+//       null
+//     ),
+//     new leaf(
+//       'B2',
+//       null,
+//       null
+//     )
+//   )
+// );
+
+// test(breadthFirstSearch(tree, 'B1'), )

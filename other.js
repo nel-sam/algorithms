@@ -180,6 +180,35 @@ const vowels = (str) => {
   return count;
 }
 
+class edge {
+  node1;
+  node2;
+  cost;
+
+  constructor(node1, node2, cost) {
+    this.node1 = node1;
+    this.node2 = node2;
+    this.cost = cost;
+  }
+}
+
+// class graphNode {
+//   cost;
+//   costFromStart;
+
+//   constructor(cost) {
+//     this.cost = cost;
+//   }
+
+//   setCostFromStart(cost) {
+//     this.costFromStart = cost;
+//   }
+// }
+
+// const dijkstrasAlgorithm = (graph) => {
+
+// }
+
 const test = require('./test');
 test(fibonacciRecursive(4), 3);
 test(fibonacciRecursive(6), 8);
@@ -196,3 +225,10 @@ test(anagrams('tEst!@#@', 'tEst)(*'), true);
 test(anagrams('RAIL! SAFETY!', 'fairy tales'), true);
 test(capitalize('look, it is working!'), 'Look, It Is Working!');
 test(vowels('Why do you ask?'), 4);
+
+// const graph = {
+//   start: new graphNode(0),
+
+// };
+
+// console.log(graph);
