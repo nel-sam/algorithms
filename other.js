@@ -1,9 +1,37 @@
+// O(2^n)
 const fibonacciRecursive = (n) => {
   if (n < 2) {
     return n;
   }
 
   return fibonacciRecursive(n -1) + fibonacciRecursive (n - 2);
+}
+
+// O(n)
+const fibonacciIterative = (n) => {
+  let result = [0, 1];
+
+  for (let i = 2; i <= n; i++) {
+    result[i] = result[i - 1] + result[i - 2];
+  }
+
+  return result[n];
+}
+
+const cache = {};
+function fibMemoization(n) {
+  if (cache[n]) {
+    return cache[n];
+  }
+
+  if (n < 2) {
+    cache[n] = n;
+    return cache[n];
+  }
+
+  cache[n-1] = fibMemoization(n - 1);
+  cache[n-2] = fibMemoization(n - 2);
+  return cache[n - 1] + cache[n - 2];
 }
 
 const fizzBuzz = (n) => {
@@ -178,6 +206,54 @@ const vowels = (str) => {
   }
 
   return count;
+}
+
+const matrix = (n) => {
+  const resultMatrix = [];
+  let startCol = startRow = 0;
+  let endCol = endRow = n - 1;
+  let counter = 1;
+
+  // Prepare result array
+  for (let i = 0; i < n; i++) {
+    resultMatrix.push([]);
+  }
+
+  while (startCol <= endCol && startRow <= endRow) {
+    // Top row
+    for (let i = startCol; i <= endCol; i++) {
+      resultMatrix[startRow][i] = counter;
+      counter++;
+    }
+
+    startRow++;
+
+    // Right col
+    for (let i = startRow; i <= endRow; i++) {
+      resultMatrix[i][endCol] = counter;
+      counter++;
+    }
+
+    endCol--;
+
+    // Bottom row goes backwards
+    for (let i = endCol; i >= startCol; i--) {
+      resultMatrix[endRow][i] = counter;
+      counter++;
+    }
+
+    endRow--;
+
+    // Left col
+    for (let i = endRow; i >= startRow; i--) {
+      resultMatrix[i][startCol] = counter;
+      counter++;
+    }
+
+    startCol++;
+  }
+
+  return resultMatrix;
 }
 
 class edge {

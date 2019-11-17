@@ -48,7 +48,9 @@ const breadthFirstSearch = (tree, toFind) => {
 
 }
 
-
+const binarySearchTree = () => {
+  
+}
 
 const test = require('./test');
 test(selectionSearch([1,3,5,7,8,9], 5), 2);
