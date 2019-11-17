@@ -256,6 +256,25 @@ const matrix = (n) => {
   return resultMatrix;
 }
 
+const mergeArrays = (array1, array2) => {
+  let index = 0;
+  const result = [];
+
+  while (array1[index] || array2[index]) {
+    if (array1[index]) {
+      result.push(array1[index]);
+    }
+
+    if (array2[index]) {
+      result.push(array2[index]);
+    }
+
+    index++;
+  }
+
+  return result;
+}
+
 class edge {
   node1;
   node2;
@@ -301,6 +320,7 @@ test(anagrams('tEst!@#@', 'tEst)(*'), true);
 test(anagrams('RAIL! SAFETY!', 'fairy tales'), true);
 test(capitalize('look, it is working!'), 'Look, It Is Working!');
 test(vowels('Why do you ask?'), 4);
+test(mergeArrays([1,2,3], ['a', 'b', 'c']).join(''), [1, 'a', 2, 'b', 3, 'c'].join(''));
 
 // const graph = {
 //   start: new graphNode(0),
