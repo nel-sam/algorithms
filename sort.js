@@ -24,6 +24,20 @@ const selectionSort = (array) => {
   return array;
 }
 
+const bubbleSort = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < (arr.length - i - 1); j++) {
+      if (arr[j] > arr[j + 1]) {
+        const lesser = arr[j + 1];
+        arr[j + 1] = arr[j];
+        arr[j] = lesser;
+      }
+    }
+  }
+
+  return arr;
+}
+
 // Choosing a random pivot makes QuickSort's best and average running
 // times the same; O(n log n)
 const quickSort = (array) => {
@@ -72,32 +86,41 @@ const mergeSort = (array) => {
   // Base case
   if (array.length <= 1) {
     return array;
-  } else if (array.length === 2) {
-    if (array[1] < array[0]) {
-      swap(array, 1, 0);
-    }
+  }
 
-    return array;
-  } else {
     // Recursive case
-    const midPoint = Math.floor((array.length - 1) / 2);
+    const midPoint = Math.floor(array.length / 2);
     const leftHalf = array.slice(0, midPoint);
     const rightHalf = array.slice(midPoint, array.length);
-    return mergeSort(leftHalf).concat(mergeSort(rightHalf));
+    return merge(mergeSort(leftHalf), mergeSort(rightHalf));
+}
+
+const merge = (i, j) => {
+  const result = [];
+
+  while (i.length && j.length) {
+    if (i[0] < j[0]) {
+      result.push(i.shift());
+    } else {
+      result.push(j.shift());
+    }
   }
+
+  return [...result, ...i, ...j];
 }
 
 const test = require('./test');
-const toSort = [8,1,4,2,34,30,68,5,2644,93,345,867,22];
-const sorted =  toSort.slice(0, toSort.length).sort((a, b) => a - b);
-const toSort2 = [8,1,4,2,34,30,5,2644,93,345,867,22];
-const sorted2 =  toSort2.slice(0, toSort2.length).sort((a, b) => a - b);
+const sorted = [ 1,   2,    4,  5,  8, 22,  30,   34, 68, 93,345, 867, 2644];// toSort.slice(0, toSort.length).sort((a, b) => a - b);
+const sorted2 = [1,   2,   4,    5,8,  22,  30,   34,93, 345, 867, 2644];// toSort2.slice(0, toSort2.length).sort((a, b) => a - b);
 
-test(selectionSort(toSort).join(''), sorted.join(''));
-test(selectionSort(toSort2).join(''), sorted2.join(''));
+test(selectionSort([8,1,4,2,34,30,68,5,2644,93,345,867,22]).join(''), sorted.join(''));
+test(selectionSort([8,1,4,2,34,30,5,2644,93,345,867,22]).join(''), sorted2.join(''));
 
-test(quickSort(toSort).join(''), sorted.join(''));
-test(quickSort(toSort2).join(''), sorted2.join(''));
+test(quickSort([8,1,4,2,34,30,68,5,2644,93,345,867,22]).join(''), sorted.join(''));
+test(quickSort([8,1,4,2,34,30,5,2644,93,345,867,22]).join(''), sorted2.join(''));
 
-test(mergeSort(toSort).join(''), sorted.join(''));
-test(mergeSort(toSort2).join(''), sorted2.join(''));
+test(mergeSort([8,1,4,2,34,30,68,5,2644,93,345,867,22]).join(''), sorted.join(''));
+test(mergeSort([8,1,4,2,34,30,5,2644,93,345,867,22]).join(''), sorted2.join(''));
+
+test(bubbleSort([8,1,4,2,34,30,68,5,2644,93,345,867,22]).join(''), sorted.join(''));
+test(bubbleSort([8,1,4,2,34,30,5,2644,93,345,867,22]).join(''), sorted2.join(''));

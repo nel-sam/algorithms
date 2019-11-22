@@ -305,6 +305,30 @@ function circular(list) {
   return false;
 }
 
+function levelWidth(root) {
+  const buffer = [root, 'x'];
+  const widths = [0];
+
+  while (buffer.length > 1) {
+    const node = buffer.shift();
+
+    if (node === 'x') {
+      widths.push(0);
+      buffer.push('x');
+    } else {
+      buffer.push(...node.children);
+      widths[widths.length - 1]++;
+    }
+  }
+
+  return widths;
+}
+
+// TODO:
+const treeDepth = (tree) => {
+
+}
+
 class edge {
   node1;
   node2;
